@@ -51,7 +51,22 @@ class AlwanLive : MainAPI() {
     ): Boolean {
         val item = parseJson<Payload>(data)
         var count = 0
-        item.servers.forEachIndexed { index, server ->
+        // Prefer streams whose URL advertises a higher resolution. Keep unknown
+        // variants available, and move explicitly low-resolution streams last.
+        fun qualityRank(url: String): Int {
+            val value = url.lowercase()
+            return when {
+                "2160" in value || "4k" in value -> 100
+                "1080" in value -> 90
+                "720" in value -> 80
+                "hd" in value || "high" in value -> 70
+                "360" in value || "240" in value -> 10
+                else -> 50
+            }
+        }
+        item.servers
+            .sortedByDescending { qualityRank(it.url) }
+            .forEachIndexed { index, server ->
             val stream = server.url.trim()
             if (!stream.startsWith("https://") && !stream.startsWith("http://")) return@forEachIndexed
             callback.invoke(newExtractorLink(
