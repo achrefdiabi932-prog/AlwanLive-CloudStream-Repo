@@ -39,7 +39,7 @@ class AlwanLive : MainAPI() {
     }
 
     override suspend fun load(url: String): LoadResponse {
-        val item = url.parseJson<Payload>()
+        val item = parseJson<Payload>(url)
         return newLiveStreamLoadResponse(item.title, url, url) { posterUrl = item.logo }
     }
 
@@ -49,7 +49,7 @@ class AlwanLive : MainAPI() {
         subtitleCallback: (SubtitleFile) -> Unit,
         callback: (ExtractorLink) -> Unit
     ): Boolean {
-        val item = data.parseJson<Payload>()
+        val item = parseJson<Payload>(data)
         var count = 0
         item.servers.forEachIndexed { index, server ->
             val stream = server.url.trim()
