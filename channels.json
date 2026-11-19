@@ -1,0 +1,260 @@
+[
+  {
+    "id": 1,
+    "title": "ALWAN SPORT 1",
+    "logo": null,
+    "servers": [
+      {
+        "name": "SERVER 1",
+        "url": "https://alwanlive.stream/proxy?url=http%3A%2F%2Fdashcloudflare.ddns.net%2Flive%2Far%2Fqa%2Fbein%2Fbein_sport_1_hd%2Ftracks-v1a1%2Fmono.ts.m3u8",
+        "referer": "https://alwanlive.stream/"
+      },
+      {
+        "name": "SERVER 2",
+        "url": "https://df11.mp4.ir/video/2026/11/321750-569311593/m3u8/360p/out.m3u8"
+      },
+      {
+        "name": "SERVER 3",
+        "url": "https://183.bozztv.com/giatv/giatv-avasoport/avasoport/playlist.m3u8"
+      },
+      {
+        "name": "SERVER 4",
+        "url": "https://lbgo.bozztv.com/ssh101/ssh101/yusfstorenrtspo/chunks.m3u8?lb_backend_hint=6"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "ALWAN SPORT 2",
+    "logo": null,
+    "servers": [
+      {
+        "name": "SERVER 1",
+        "url": "https://alwanlive.stream/proxy?url=http%3A%2F%2Fdashcloudflare.ddns.net%2Flive%2Far%2Fqa%2Fbein%2Fbein_sport_2_hd%2Ftracks-v1a1%2Fmono.ts.m3u8",
+        "referer": "https://alwanlive.stream/"
+      },
+      {
+        "name": "SERVER 2",
+        "url": "https://df11.mp4.ir/video/2026/11/321750-569311593/m3u8/360p/out.m3u8"
+      },
+      {
+        "name": "SERVER 3",
+        "url": "https://lbgo.bozztv.com/ssh101/ssh101/avasport123/chunks.m3u8"
+      },
+      {
+        "name": "SERVER 4",
+        "url": "https://lbgo.bozztv.com/ssh101/ssh101/alwan6websitealwanlive6/chunks.m3u8"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "ALWAN SPORT 3",
+    "logo": null,
+    "servers": [
+      {
+        "name": "SERVER 1",
+        "url": "https://alwanlive.stream/proxy?url=http%3A%2F%2Fdashcloudflare.ddns.net%2Flive%2Far%2Fqa%2Fbein%2Fbein_sport_3_hd%2Ftracks-v1a1%2Fmono.ts.m3u8",
+        "referer": "https://alwanlive.stream/"
+      },
+      {
+        "name": "SERVER 2",
+        "url": "https://df11.mp4.ir/video/2026/11/321750-569311593/m3u8/360p/out.m3u8"
+      },
+      {
+        "name": "SERVER 3",
+        "url": "https://lbgo.bozztv.com/ssh101/ssh101/alwan3websitealwanlive2/chunks.m3u8"
+      },
+      {
+        "name": "SERVER 4",
+        "url": "https://lbgo.bozztv.com/ssh101/live/biner-zaxo/playlist.m3u8"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "ALWAN SPORT 4",
+    "logo": null,
+    "servers": [
+      {
+        "name": "SERVER 1",
+        "url": "https://alwanlive.stream/proxy?url=http%3A%2F%2Fdashcloudflare.ddns.net%2Flive%2Far%2Fqa%2Fbein%2Fbein_sport_4_hd%2Ftracks-v1a1%2Fmono.ts.m3u8",
+        "referer": "https://alwanlive.stream/"
+      },
+      {
+        "name": "SERVER 2",
+        "url": "https://df11.mp4.ir/video/2026/11/321750-569311593/m3u8/360p/out.m3u8"
+      },
+      {
+        "name": "SERVER 3",
+        "url": "https://lbgo.bozztv.com/ssh101/ssh101/alwan4websitealwanlive2/chunks.m3u8"
+      },
+      {
+        "name": "SERVER 4",
+        "url": "https://lbgo.bozztv.com/ssh101/live/biner-zaxo/playlist.m3u8"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "ALWAN SPORT 5",
+    "logo": null,
+    "servers": [
+      {
+        "name": "SERVER 1",
+        "url": "https://alwanlive.stream/proxy?url=http%3A%2F%2Fdashcloudflare.ddns.net%2Flive%2Far%2Fqa%2Fbein%2Fbein_sport_5_hd%2Ftracks-v1a1%2Fmono.ts.m3u8",
+        "referer": "https://alwanlive.stream/"
+      },
+      {
+        "name": "SERVER 2",
+        "url": "https://df11.mp4.ir/video/2026/11/321750-569311593/m3u8/360p/out.m3u8"
+      },
+      {
+        "name": "SERVER 3",
+        "url": "https://lbgo.bozztv.com/ssh101/ssh101/alwan5websitealwanlive5/chunks.m3u8"
+      },
+      {
+        "name": "SERVER 4",
+        "url": "https://lbgo.bozztv.com/ssh101/ssh101/alwan5websitealwanlive2/chunks.m3u8"
+      },
+      {
+        "name": "SERVER 5",
+        "url": "https://lbgo.bozztv.com/ssh101/live/biner-zaxo/playlist.m3u8"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "ALWAN SPORT 6",
+    "logo": null,
+    "servers": [
+      {
+        "name": "SERVER 1",
+        "url": "https://alwanlive.stream/proxy?url=http%3A%2F%2Fdashcloudflare.ddns.net%2Flive%2Far%2Fqa%2Fbein%2Fbein_sport_6_hd%2Ftracks-v1a1%2Fmono.ts.m3u8",
+        "referer": "https://alwanlive.stream/"
+      },
+      {
+        "name": "SERVER 2",
+        "url": "https://lbgo.bozztv.com/ssh101/ssh101/alwan6websitealwanlive6/chunks.m3u8"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "title": "ALWAN SPORT 7",
+    "logo": null,
+    "servers": [
+      {
+        "name": "SERVER 1",
+        "url": "https://alwanlive.stream/proxy?url=http%3A%2F%2Fdashcloudflare.ddns.net%2Flive%2Far%2Fqa%2Fbein%2Fbein_sport_7_hd%2Ftracks-v1a1%2Fmono.ts.m3u8",
+        "referer": "https://alwanlive.stream/"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "title": "ALWAN SPORT 8",
+    "logo": null,
+    "servers": [
+      {
+        "name": "SERVER 1",
+        "url": "https://alwanlive.stream/proxy?url=http%3A%2F%2Fdashcloudflare.ddns.net%2Flive%2Far%2Fqa%2Fbein%2Fbein_sport_8_hd%2Ftracks-v1a1%2Fmono.ts.m3u8",
+        "referer": "https://alwanlive.stream/"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "title": "NRT SPORT",
+    "logo": null,
+    "servers": [
+      {
+        "name": "SERVER 1",
+        "url": "https://streams.rooter.gg/hls/db2caa46259e519b3763af9390b2aa0a/hd720.m3u8"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "title": "ld sport chaker",
+    "logo": null,
+    "servers": [
+      {
+        "name": "SERVER 1",
+        "url": "https://streams.rooter.gg/hls/4676b1c60190303b0fba515f5157ccb1/high.m3u8"
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "title": "AVA SPORT",
+    "logo": "https://mixmedia.tv/wp-content/uploads/2023/12/ava-sport.png",
+    "servers": [
+      {
+        "name": "SERVER 1",
+        "url": "https://alwanlive.stream/proxy?url=http%3A%2F%2Fyusftsoreforver.ddns.net%2Flive%2Fku%2Fku%2Funit%2FAva_Sport%2Findex.m3u8",
+        "referer": "https://alwanlive.stream/"
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "title": "NRT SPORT",
+    "logo": "https://mixmedia.tv/wp-content/uploads/2022/08/nrt-sport.png",
+    "servers": [
+      {
+        "name": "SERVER 1",
+        "url": "https://alwanlive.stream/proxy?url=http%3A%2F%2Fdashcloudflare.ddns.net%2Flive%2Fku%2Fku%2Funit%2Fnrt_sport%2Findex.m3u8",
+        "referer": "https://alwanlive.stream/"
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "title": "ASO SPORT",
+    "logo": "https://mixmedia.tv/wp-content/uploads/2024/05/ASO-Sport.png",
+    "servers": [
+      {
+        "name": "SERVER 1",
+        "url": "https://alwanlive.stream/proxy?url=http%3A%2F%2Fyusftsoreforver.ddns.net%2Flive%2Fku%2Fku%2Funit%2Faso_sport%2Findex.m3u8",
+        "referer": "https://alwanlive.stream/"
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "title": "FALCON EYE 1",
+    "logo": "https://mixmedia.tv/wp-content/uploads/2022/08/falcon-1-1.png",
+    "servers": [
+      {
+        "name": "SERVER 1",
+        "url": "https://alwanlive.stream/proxy?url=http%3A%2F%2Fdashcloudflare.ddns.net%2Flive%2Fku%2Fku%2Funit%2Ffalcone_1%2Findex.m3u8",
+        "referer": "https://alwanlive.stream/"
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "title": "FALCON EYE 2",
+    "logo": "https://mixmedia.tv/wp-content/uploads/2022/08/falcon-1-1.png",
+    "servers": [
+      {
+        "name": "SERVER 1",
+        "url": "https://alwanlive.stream/proxy?url=http%3A%2F%2Fdashcloudflare.ddns.net%2Flive%2Fku%2Fku%2Funit%2Ffalcone_2%2Findex.m3u8",
+        "referer": "https://alwanlive.stream/"
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "title": "FALCON EYE 3",
+    "logo": "https://assets.bein.com/mena/sites/3/2015/06/beIN_SPORTS1_DIGITAL_Mono.png",
+    "servers": [
+      {
+        "name": "SERVER 1",
+        "url": "https://alwanlive.stream/proxy?url=http%3A%2F%2Fdashcloudflare.ddns.net%2Flive%2Far%2Fqa%2Fbein%2Fbein_sport_9_hd%2Ftracks-v1a1%2Fmono.ts.m3u8",
+        "referer": "https://alwanlive.stream/"
+      }
+    ]
+  }
+]
