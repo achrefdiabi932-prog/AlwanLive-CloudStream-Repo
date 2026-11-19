@@ -75,7 +75,7 @@ class AlwanLive : MainAPI() {
                     val line = lines[lineIndex].trim()
                     if (!line.startsWith("#EXT-X-STREAM-INF:", ignoreCase = true)) continue
 
-                    val resolution = Regex("""RESOLUTION=\\d+x(\\d+)""", RegexOption.IGNORE_CASE)
+                    val resolution = Regex("""RESOLUTION=\d+x(\d+)""", RegexOption.IGNORE_CASE)
                         .find(line)?.groupValues?.getOrNull(1)?.toIntOrNull() ?: continue
                     val uriLine = lines.drop(lineIndex + 1)
                         .firstOrNull { it.isNotBlank() && !it.trim().startsWith("#") }
