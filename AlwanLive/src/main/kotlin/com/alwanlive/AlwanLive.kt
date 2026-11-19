@@ -22,7 +22,7 @@ class AlwanLive : MainAPI() {
     override val mainPage = mainPageOf("channels" to "قنوات Alwan Live")
 
     private suspend fun channels(): List<Channel> =
-        app.get(CATALOG_URL).text.parseJson<List<Channel>>()
+        parseJson<List<Channel>>(app.get(CATALOG_URL).text)
 
     private fun Channel.response(): SearchResponse {
         val data = Payload(id, title, logo, servers).toJson()
@@ -30,7 +30,7 @@ class AlwanLive : MainAPI() {
     }
 
     override suspend fun getMainPage(page: Int, request: MainPageRequest): HomePageResponse {
-        return newHomePageResponse(channels().map { it.response() }, hasNext = false)
+        return newHomePageResponse("قنوات Alwan Live", channels().map { it.response() }, hasNext = false)
     }
 
     override suspend fun search(query: String): List<SearchResponse> {
