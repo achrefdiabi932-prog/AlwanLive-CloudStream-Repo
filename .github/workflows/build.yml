@@ -44,7 +44,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p publish
-          find . -type f -path '*/build/*.cs3' -exec cp -v {} publish/ \\;
+          find . -type f -path '*/build/*.cs3' -exec cp -v {} publish/ \;
           test -n "$(find publish -maxdepth 1 -name '*.cs3' -print -quit)"
           test -f build/plugins.json
           cp build/plugins.json publish/plugins.json
