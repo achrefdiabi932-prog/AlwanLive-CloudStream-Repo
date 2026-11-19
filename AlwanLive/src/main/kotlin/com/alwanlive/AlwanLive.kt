@@ -51,35 +51,67 @@ class AlwanLive : MainAPI() {
     ): Boolean {
         val item = parseJson<Payload>(data)
         var count = 0
-        // Prefer streams whose URL advertises a higher resolution. Keep unknown
-        // variants available, and move explicitly low-resolution streams last.
-        fun qualityRank(url: String): Int {
-            val value = url.lowercase()
-            return when {
-                "2160" in value || "4k" in value -> 100
-                "1080" in value -> 90
-                "720" in value -> 80
-                "hd" in value || "high" in value -> 70
-                "360" in value || "240" in value -> 10
-                else -> 50
-            }
-        }
-        item.servers
-            .sortedByDescending { qualityRank(it.url) }
-            .forEachIndexed { index, server ->
+
+        data class Variant(val url: String, val height: Int)
+
+        item.servers.forEachIndexed { index, server ->
             val stream = server.url.trim()
             if (!stream.startsWith("https://") && !stream.startsWith("http://")) return@forEachIndexed
-            callback.invoke(newExtractorLink(
-                source = name,
-                name = "${item.title} • ${server.name.ifBlank { "SERVER ${index + 1}" }}",
-                url = stream,
-                type = ExtractorLinkType.M3U8
-            ) {
-                server.referer?.let { referer = it }
-                server.userAgent?.let { headers = mapOf("User-Agent" to it) }
-                quality = Qualities.Unknown.value
-            })
-            count++
+
+            val headers = buildMap {
+                server.userAgent?.let { put("User-Agent", it) }
+                server.referer?.let { put("Referer", it) }
+            }
+
+            // Read the HLS master playlist and extract its actual variant resolutions.
+            val playlist = runCatching {
+                app.get(stream, headers = headers).text
+            }.getOrNull()
+
+            val variants = mutableListOf<Variant>()
+            if (!playlist.isNullOrBlank()) {
+                val lines = playlist.lines()
+                for (lineIndex in lines.indices) {
+                    val line = lines[lineIndex].trim()
+                    if (!line.startsWith("#EXT-X-STREAM-INF:", ignoreCase = true)) continue
+
+                    val resolution = Regex("""RESOLUTION=\\d+x(\\d+)""", RegexOption.IGNORE_CASE)
+                        .find(line)?.groupValues?.getOrNull(1)?.toIntOrNull() ?: continue
+                    val uriLine = lines.drop(lineIndex + 1)
+                        .firstOrNull { it.isNotBlank() && !it.trim().startsWith("#") }
+                        ?.trim() ?: continue
+                    val variantUrl = runCatching {
+                        java.net.URI(stream).resolve(uriLine).toString()
+                    }.getOrDefault(uriLine)
+
+                    variants.add(Variant(variantUrl, resolution))
+                }
+            }
+
+            val selected = if (variants.isNotEmpty()) {
+                variants.sortedByDescending { it.height }
+            } else {
+                listOf(Variant(stream, 0))
+            }
+
+            selected.forEach { variant ->
+                callback.invoke(newExtractorLink(
+                    source = name,
+                    name = buildString {
+                        append(item.title)
+                        append(" • ")
+                        append(server.name.ifBlank { "SERVER ${index + 1}" })
+                        if (variant.height > 0) append(" • ${variant.height}p")
+                    },
+                    url = variant.url,
+                    type = ExtractorLinkType.M3U8
+                ) {
+                    server.referer?.let { referer = it }
+                    if (headers.isNotEmpty()) this.headers = headers
+                    quality = variant.height
+                })
+                count++
+            }
         }
         return count > 0
     }
