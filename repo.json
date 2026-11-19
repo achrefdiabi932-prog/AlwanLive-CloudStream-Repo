@@ -1,0 +1,8 @@
+{
+  "name": "Alwan Live",
+  "description": "قنوات Alwan Live المباشرة - إضافة CloudStream متوافقة مع CSWeb TV",
+  "manifestVersion": 1,
+  "pluginLists": [
+    "https://raw.githubusercontent.com/achrefdiabi932-prog/AlwanLive-CloudStream-Repo/builds/plugins.json"
+  ]
+}
