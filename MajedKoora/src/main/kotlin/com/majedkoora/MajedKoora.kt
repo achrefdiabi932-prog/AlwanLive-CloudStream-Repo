@@ -44,7 +44,7 @@ class MajedKoora : MainAPI() {
             val title = teamNames.take(2).joinToString(" - ")
             if (!seen.add(href)) return@forEach
 
-            val poster = anchor.selectFirst("img")?.let { image ->
+            val poster: String? = anchor.select("img").firstOrNull()?.let { image ->
                 image.absUrl("src").ifBlank {
                     image.absUrl("data-src")
                 }.takeIf { it.startsWith("http://") || it.startsWith("https://") }
@@ -105,11 +105,7 @@ class MajedKoora : MainAPI() {
             if (!streamUrl.startsWith("http://") && !streamUrl.startsWith("https://")) {
                 return@forEach
             }
-            val streamType = if (streamUrl.substringBefore("?").endsWith(".m3u8", true)) {
-                ExtractorLinkType.M3U8
-            } else {
-                ExtractorLinkType.INFERRED
-            }
+            val streamType = ExtractorLinkType.M3U8
             callback.invoke(
                 newExtractorLink(
                     source = name,
