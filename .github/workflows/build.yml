@@ -1,4 +1,5 @@
-name: Build Alwan Live plugin
+name: Build AlwanLive and MajedKoora
+run-name: Build plugins from ${{ github.sha }}
 
 on:
   push:
@@ -43,7 +44,7 @@ jobs:
         with:
           gradle-version: '8.9'
 
-      - name: Build CloudStream plugin and repository index
+      - name: Build CloudStream plugins and repository index
         run: gradle make makePluginsJson --stacktrace
 
       - name: Prepare repository output
@@ -57,10 +58,10 @@ jobs:
           cp build/plugins.json publish/plugins.json
           cp repo.json publish/repo.json
           cat > publish/README.md <<'TXT'
-          # Alwan Live repository
+          # AlwanLive + MajedKoora repository
 
-          This branch contains the compiled CloudStream plugin and repository index.
-          Add this repository URL in CSWeb TV:
+          Compiled CloudStream plugins and repository index.
+          Add this repository in CloudStream using:
 
           https://raw.githubusercontent.com/achrefdiabi932-prog/AlwanLive-CloudStream-Repo/builds/repo.json
           TXT
@@ -76,6 +77,6 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add .
-          git commit -m "Build Alwan Live ${GITHUB_SHA::7}"
+          git commit -m "Build plugins ${GITHUB_SHA::7}"
           git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
           git push --force origin builds
