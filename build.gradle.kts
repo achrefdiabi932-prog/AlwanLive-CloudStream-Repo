@@ -1,5 +1,7 @@
 import com.android.build.gradle.BaseExtension
 import com.lagradost.cloudstream3.gradle.CloudstreamExtension
+import org.gradle.api.Project
+import org.gradle.api.tasks.Delete
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
@@ -40,7 +42,7 @@ subprojects {
     }
 
     android {
-        namespace = "com.alwanlive"
+        namespace = "com.${project.name.lowercase()}"
         defaultConfig {
             minSdk = 21
             compileSdkVersion(35)
