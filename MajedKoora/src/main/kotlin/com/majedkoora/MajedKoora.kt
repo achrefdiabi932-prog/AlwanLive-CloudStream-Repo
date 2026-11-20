@@ -11,6 +11,10 @@ import java.util.Locale
 
 private const val SITE = "https://majed-koora.live"
 private const val MATCHES_API = "$SITE/api/v1/matches"
+private val WATCH_HOSTS = setOf(
+    "majed-koora.live",
+    "xn----zmcaegc7cl3msazv.com"
+)
 
 private data class Team(
     val id: String = "",
@@ -63,13 +67,13 @@ private fun siteUrl(path: String): String {
     else SITE.trimEnd('/') + "/" + path.trimStart('/')
 }
 
-private fun isOfficialWatchPage(url: String): Boolean {
+private fun isAllowedWatchPage(url: String): Boolean {
     if (url.isBlank()) return false
     return runCatching {
         val uri = URI(url)
         val host = uri.host?.lowercase(Locale.ROOT) ?: return@runCatching false
         uri.scheme.equals("https", ignoreCase = true) &&
-            (host == "majed-koora.live" || host.endsWith(".majed-koora.live")) &&
+            WATCH_HOSTS.any { host == it || host.endsWith(".$it") } &&
             uri.userInfo == null
     }.getOrDefault(false)
 }
@@ -167,13 +171,13 @@ class MajedKoora : MainAPI() {
         }
 
         val watchPage = siteUrl(match.watch_url)
-        if (!isOfficialWatchPage(watchPage)) return false
+        if (!isAllowedWatchPage(watchPage)) return false
 
         return runCatching {
             var foundSource = false
             val extractorMatched = loadExtractor(
                 watchPage,
-                SITE,
+                watchPage,
                 subtitleCallback
             ) { link ->
                 foundSource = true
