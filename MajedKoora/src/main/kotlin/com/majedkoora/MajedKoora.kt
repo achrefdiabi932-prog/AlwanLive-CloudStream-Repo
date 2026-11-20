@@ -4,6 +4,7 @@ import com.lagradost.cloudstream3.*
 import com.lagradost.cloudstream3.utils.*
 import com.lagradost.cloudstream3.utils.AppUtils.parseJson
 import com.lagradost.cloudstream3.utils.AppUtils.toJson
+import java.net.URI
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -62,6 +63,17 @@ private fun siteUrl(path: String): String {
     else SITE.trimEnd('/') + "/" + path.trimStart('/')
 }
 
+private fun isOfficialWatchPage(url: String): Boolean {
+    if (url.isBlank()) return false
+    return runCatching {
+        val uri = URI(url)
+        val host = uri.host?.lowercase(Locale.ROOT) ?: return@runCatching false
+        uri.scheme.equals("https", ignoreCase = true) &&
+            (host == "majed-koora.live" || host.endsWith(".majed-koora.live")) &&
+            uri.userInfo == null
+    }.getOrDefault(false)
+}
+
 class MajedKoora : MainAPI() {
     override var name = "Majed Koora"
     override var mainUrl = SITE
@@ -79,13 +91,27 @@ class MajedKoora : MainAPI() {
         val teams = listOf(home_team.name, away_team.name)
             .filter { it.isNotBlank() }
             .joinToString(" - ")
+        val score = if (home_team.score != null || away_team.score != null) {
+            "${home_team.score ?: "-"} : ${away_team.score ?: "-"}"
+        } else ""
         val competition = tournament.name
         val status = state_text.ifBlank { state }
-        return listOf(teams, competition, time, status)
+        return listOf(teams, score, competition, time, status)
             .filter { it.isNotBlank() }
             .joinToString(" • ")
-            .ifBlank { "مباراة من ماجد سبورت" }
+            .ifBlank { "مباراة من ماجد كورة" }
     }
+
+    private fun MatchItem.detailsText(matchDate: String): String =
+        listOf(
+            tournament.name.takeIf { it.isNotBlank() }?.let { "البطولة: $it" },
+            matchDate.takeIf { it.isNotBlank() }?.let { "التاريخ: $it" },
+            time.takeIf { it.isNotBlank() }?.let { "الوقت: $it" },
+            state_text.ifBlank { state }.takeIf { it.isNotBlank() }?.let { "الحالة: $it" },
+            broadcast.channel.takeIf { it.isNotBlank() }?.let { "القناة: $it" },
+            broadcast.commentator.takeIf { it.isNotBlank() }?.let { "المعلق: $it" },
+            "المشاهدة الرسمية: $SITE"
+        ).filterNotNull().joinToString("\n")
 
     private fun MatchItem.homeLogo(): String? =
         siteUrl(home_team.logo).takeIf { it.isNotBlank() }
@@ -124,6 +150,7 @@ class MajedKoora : MainAPI() {
         val poster = siteUrl(match.tournament.logo).ifBlank { match.homeLogo().orEmpty() }
         return newLiveStreamLoadResponse(match.displayTitle(), url, url) {
             posterUrl = poster
+            plot = match.detailsText(item.matchDate)
         }
     }
 
@@ -140,11 +167,13 @@ class MajedKoora : MainAPI() {
         }
 
         val watchPage = siteUrl(match.watch_url)
+        if (!isOfficialWatchPage(watchPage)) return false
+
         return runCatching {
             var foundSource = false
             val extractorMatched = loadExtractor(
                 watchPage,
-                watchPage,
+                SITE,
                 subtitleCallback
             ) { link ->
                 foundSource = true
