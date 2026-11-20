@@ -141,8 +141,16 @@ class MajedKoora : MainAPI() {
 
         val watchPage = siteUrl(match.watch_url)
         return runCatching {
-            loadExtractor(watchPage, SITE, subtitleCallback, callback)
-            true
+            var foundSource = false
+            val extractorMatched = loadExtractor(
+                watchPage,
+                watchPage,
+                subtitleCallback
+            ) { link ->
+                foundSource = true
+                callback(link)
+            }
+            extractorMatched && foundSource
         }.getOrDefault(false)
     }
 }
