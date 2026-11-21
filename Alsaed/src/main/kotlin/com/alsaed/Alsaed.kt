@@ -131,7 +131,7 @@ class Alsaed : MainAPI() {
             }
             val patterns = listOf(
                 Regex("""https?:\\?/\\?/[^"'\\s<>]+?\\.(?:m3u8|mp4)(?:\\?[^"'\\s<>]*)?""", RegexOption.IGNORE_CASE),
-                Regex("""(?:file|source|src|url)\\s*[:=]\\s*["']([^"']+)["']""", RegexOption.IGNORE_CASE)
+                Regex("""(?:file|source|src|url)\s*[:=]\s*["']([^"']+)["']""", RegexOption.IGNORE_CASE)
             )
             patterns.forEach { regex ->
                 regex.findAll(response.text).forEach { match ->
