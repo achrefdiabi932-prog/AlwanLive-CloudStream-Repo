@@ -130,7 +130,7 @@ class Alsaed : MainAPI() {
                 if (src.startsWith("https://") || src.startsWith("http://")) candidates.add(src)
             }
             val patterns = listOf(
-                Regex("""https?:\\?/\\?/[^"'\\s<>]+?\\.(?:m3u8|mp4)(?:\\?[^"'\\s<>]*)?""", RegexOption.IGNORE_CASE),
+                Regex("""https?://[^"'\s<>]+?\.(?:m3u8|mp4)(?:\?[^"'\s<>]*)?""", RegexOption.IGNORE_CASE),
                 Regex("""(?:file|source|src|url)\s*[:=]\s*["']([^"']+)["']""", RegexOption.IGNORE_CASE)
             )
             patterns.forEach { regex ->
