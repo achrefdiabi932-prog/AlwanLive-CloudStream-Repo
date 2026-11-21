@@ -1,6 +1,6 @@
 {
-  "name": "Alwan Live + Majed Koora",
-  "description": "مستودع إضافات CloudStream: Alwan Live وMajed Koora",
+  "name": "Alwan Live + Majed Koora + Alsaed",
+  "description": "مستودع إضافات CloudStream: Alwan Live وMajed Koora وAlsaed",
   "manifestVersion": 1,
   "pluginLists": [
     "https://raw.githubusercontent.com/achrefdiabi932-prog/AlwanLive-CloudStream-Repo/builds/plugins.json"
