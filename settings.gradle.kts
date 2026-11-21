@@ -1,2 +1,2 @@
 rootProject.name = "AlwanLive-CloudStream"
-include(":AlwanLive", ":MajedKoora")
+include(":AlwanLive", ":MajedKoora", ":Alsaed")
