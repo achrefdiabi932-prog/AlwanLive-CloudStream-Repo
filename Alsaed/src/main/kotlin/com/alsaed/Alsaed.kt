@@ -52,29 +52,54 @@ class Alsaed : MainAPI() {
         val document = Jsoup.parse(html, pageUrl)
         val output = linkedMapOf<String, SearchResponse>()
 
-        for (anchor in document.select("a[href]")) {
-            val href = absoluteUrl(pageUrl, anchor.attr("href"))
-            if (!validPage(href) || href.substringBefore("#").substringBefore("?") ==
-                pageUrl.substringBefore("#").substringBefore("?")) continue
-
-            val card = anchor.closest("article, li, .match, .match-card, .match-item, .fixture")
-                ?: anchor.parent()?.parent() ?: anchor.parent() ?: anchor
-            val imageNames = card.select("img[alt]").map { it.attr("alt").trim() }
-                .filter { it.isNotBlank() && it.length < 70 }
-            val rawText = card.text().replace(Regex("\\s+"), " ").trim()
-            val title = when {
-                imageNames.size >= 2 -> "${imageNames[0]} - ${imageNames[1]}"
-                rawText.length in 5..180 -> rawText
-                anchor.text().isNotBlank() -> anchor.text().trim()
-                else -> imageNames.firstOrNull().orEmpty()
+        // The match cards use team-logo images hosted on malik-web.com.
+        // Their image URLs are not match-page URLs, so identify cards from
+        // the two team names rather than treating every anchor as a fixture.
+        val teamImages = document.select("img[alt]")
+            .filter { image ->
+                val alt = image.attr("alt").trim()
+                alt.length in 2..70 &&
+                    !alt.contains("الصعيد") &&
+                    !alt.contains("مباريات")
             }
-            if (title.length < 5 || title.contains("مباريات اليوم") ||
-                title.contains("مباريات الغد") || title.contains("عرض المزيد")) continue
 
-            val data = MatchPage(title, href, day, rawText).toJson()
-            output.putIfAbsent(href, newLiveSearchResponse(title, data, TvType.Live, true) {
-                posterUrl = card.selectFirst("img[src]")?.absUrl("src")
-            })
+        for (image in teamImages) {
+            var card: org.jsoup.nodes.Element? = null
+            var parent = image.parent()
+            while (parent != null) {
+                val names = parent.select("img[alt]").map { it.attr("alt").trim() }
+                    .filter { it.length in 2..70 }
+                    .distinct()
+                if (names.size >= 2 && names.size <= 4) {
+                    card = parent
+                    break
+                }
+                parent = parent.parent()
+            }
+            val matchCard = card ?: continue
+            val teams = matchCard.select("img[alt]").map { it.attr("alt").trim() }
+                .filter { it.length in 2..70 }
+                .distinct()
+                .take(2)
+            if (teams.size != 2) continue
+
+            val title = "${teams[0]} - ${teams[1]}"
+            val matchUrl = matchCard.select("a[href]")
+                .map { absoluteUrl(pageUrl, it.attr("href")) }
+                .firstOrNull { href ->
+                    validPage(href) &&
+                        href.substringBefore("#").substringBefore("?") !=
+                        pageUrl.substringBefore("#").substringBefore("?")
+                } ?: pageUrl
+
+            val key = "${title}_${matchUrl}"
+            if (output.containsKey(key)) continue
+
+            val text = matchCard.text().replace(Regex("\\s+"), " ").trim()
+            val data = MatchPage(title, matchUrl, day, text).toJson()
+            output[key] = newLiveSearchResponse(title, data, TvType.Live, true) {
+                posterUrl = image.absUrl("src").ifBlank { null }
+            }
         }
         return output.values.toList()
     }
