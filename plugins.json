@@ -1,0 +1,62 @@
+[
+    {
+        "iconUrl": "https://www.alsaed.online/favicon.ico",
+        "fileHash": "sha256-d0b227d9d289cb938966cdd06d7c6e23de6f2e5eabe001c8eb12ebae7fa33e52",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/achrefdiabi932-prog/AlwanLive-CloudStream-Repo",
+        "fileSize": 19488,
+        "status": 1,
+        "language": "ar",
+        "authors": [
+            "Alsaed"
+        ],
+        "tvTypes": [
+            "Live"
+        ],
+        "version": 1,
+        "internalName": "Alsaed",
+        "description": "\u0645\u0628\u0627\u0631\u064a\u0627\u062a \u0627\u0644\u064a\u0648\u0645 \u0648\u0627\u0644\u063a\u062f \u0645\u0646 \u0645\u0648\u0642\u0639 \u0627\u0644\u0635\u0639\u064a\u062f \u0646\u064a\u0648\u0632 \u0645\u0639 \u0641\u062d\u0635 \u0635\u0641\u062d\u0627\u062a \u0627\u0644\u0645\u0628\u0627\u0631\u064a\u0627\u062a \u0648\u0631\u0648\u0627\u0628\u0637 \u0627\u0644\u0645\u0634\u0627\u0647\u062f\u0629 \u0639\u0646\u062f \u062a\u0648\u0641\u0631\u0647\u0627",
+        "url": "https://raw.githubusercontent.com/achrefdiabi932-prog/AlwanLive-CloudStream-Repo/builds/Alsaed.cs3",
+        "name": "Alsaed"
+    },
+    {
+        "iconUrl": "https://alwanlive.stream/favicon.ico",
+        "fileHash": "sha256-680b2f4eaebc00e9835da56a2ede7278f76e60cd8d5af4b5ac261a8deb45310d",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/achrefdiabi932-prog/AlwanLive-CloudStream-Repo",
+        "fileSize": 18407,
+        "status": 1,
+        "language": "ar",
+        "authors": [
+            "Alwan Live"
+        ],
+        "tvTypes": [
+            "Live"
+        ],
+        "version": 1,
+        "internalName": "AlwanLive",
+        "description": "\u0642\u0646\u0648\u0627\u062a Alwan Live \u0645\u0639 \u0627\u062e\u062a\u064a\u0627\u0631 \u0627\u0644\u0633\u064a\u0631\u0641\u0631\u0627\u062a \u0627\u0644\u0645\u062a\u0627\u062d\u0629",
+        "url": "https://raw.githubusercontent.com/achrefdiabi932-prog/AlwanLive-CloudStream-Repo/builds/AlwanLive.cs3",
+        "name": "AlwanLive"
+    },
+    {
+        "iconUrl": "https://majed-koora.live/favicon.ico",
+        "fileHash": "sha256-973433e85bdee7e99714fe273fde11064121198091d073c57fa0607396b0f534",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/achrefdiabi932-prog/AlwanLive-CloudStream-Repo",
+        "fileSize": 20662,
+        "status": 1,
+        "language": "ar",
+        "authors": [
+            "Majed Koora"
+        ],
+        "tvTypes": [
+            "Live"
+        ],
+        "version": 1,
+        "internalName": "MajedKoora",
+        "description": "\u0645\u0628\u0627\u0631\u064a\u0627\u062a \u0627\u0644\u064a\u0648\u0645 \u0645\u0646 \u0645\u0648\u0642\u0639 \u0645\u0627\u062c\u062f \u0643\u0648\u0631\u0629 \u0645\u0639 \u0635\u0641\u062d\u0627\u062a \u062a\u0641\u0627\u0635\u064a\u0644 \u0627\u0644\u0645\u0628\u0627\u0631\u064a\u0627\u062a",
+        "url": "https://raw.githubusercontent.com/achrefdiabi932-prog/AlwanLive-CloudStream-Repo/builds/MajedKoora.cs3",
+        "name": "MajedKoora"
+    }
+]
