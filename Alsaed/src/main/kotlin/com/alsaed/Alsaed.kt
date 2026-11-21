@@ -146,12 +146,15 @@ class Alsaed : MainAPI() {
                 if (candidate == item.url || candidate == SITE) continue
                 val direct = candidate.contains(".m3u8", true) || candidate.contains(".mp4", true)
                 if (direct) {
-                    callback(
-                        ExtractorLink(
-                            name, item.title, candidate, item.url,
-                            Qualities.Unknown.value, isM3u8 = candidate.contains(".m3u8", true)
-                        )
-                    )
+                    callback(newExtractorLink(
+                        source = name,
+                        name = item.title,
+                        url = candidate,
+                        type = if (candidate.contains(".m3u8", true)) ExtractorLinkType.M3U8 else ExtractorLinkType.VIDEO
+                    ) {
+                        referer = item.url
+                        quality = Qualities.Unknown.value
+                    })
                     found = true
                 } else {
                     runCatching {
