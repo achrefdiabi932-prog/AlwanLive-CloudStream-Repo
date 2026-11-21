@@ -1,4 +1,4 @@
-name: Build AlwanLive and MajedKoora
+name: Build all CloudStream plugins
 run-name: Build plugins from ${{ github.sha }}
 
 on:
